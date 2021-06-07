@@ -5,9 +5,9 @@
     "passes": 1,
     "pending": 0,
     "failures": 1,
-    "start": "2021-06-06T20:55:47.989Z",
-    "end": "2021-06-06T20:56:49.786Z",
-    "duration": 61797,
+    "start": "2021-06-07T00:33:41.177Z",
+    "end": "2021-06-07T00:34:49.033Z",
+    "duration": 67856,
     "testsRegistered": 2,
     "passPercent": 50,
     "pendingPercent": 0,
@@ -18,7 +18,7 @@
   },
   "results": [
     {
-      "uuid": "6fee211d-a979-4d16-b538-61db768d9b7c",
+      "uuid": "01d94874-cf50-4ae7-8995-872eb168bc07",
       "title": "",
       "fullFile": "",
       "file": "",
@@ -27,7 +27,7 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "6b00a11a-ac8d-48e9-b196-8975fb7b77b9",
+          "uuid": "d58d021b-d4cb-4727-87bc-7768d3bdf689",
           "title": "ClickaBuyWeb Selenium Test *FILTERS*",
           "fullFile": "C:\\Users\\Valentin\\Desktop\\mern\\proyectoFinalSelenium\\test.js",
           "file": "\\test.js",
@@ -35,56 +35,56 @@
           "afterHooks": [],
           "tests": [
             {
-              "title": "First Test: Filter located @ Home 🏠 in default search (empty stringtext) give as results something different than *No products*, wich means that the website is reaching the source data",
-              "fullTitle": "ClickaBuyWeb Selenium Test *FILTERS* First Test: Filter located @ Home 🏠 in default search (empty stringtext) give as results something different than *No products*, wich means that the website is reaching the source data",
+              "title": "First Test: Filter located @ Home 🏠 in search input place a ('t character') give as results something different than *No products*, wich means that the website is reaching the data source",
+              "fullTitle": "ClickaBuyWeb Selenium Test *FILTERS* First Test: Filter located @ Home 🏠 in search input place a ('t character') give as results something different than *No products*, wich means that the website is reaching the data source",
               "timedOut": false,
-              "duration": 9986,
+              "duration": 16504,
               "state": "passed",
               "speed": "slow",
               "pass": true,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"http://clickabuyapp.herokuapp.com/\");\n/*  await webDriver.sleep(3000); */\nconst searchInputButton = await webDriver\n  .findElement(By.css(\"#root > div.contenedorHome > header > div.contenedorSearch > div.contenedorFiltro > a\"))\n  .click();\n/* Codigo para preloaders, esto tiene 3 parametros el elemento, el tiempo maximo de espera y ... */\nwebDriver.wait(until.elementLocated(By.className(\"containerCards\")));\n/* Codigo para preloaders */\nconst texto = await webDriver.findElement(By.className(\"containerCards\")).getText();\nassert.notStrictEqual(texto, \"No products\");\n/* console.log(\"cadena\", cadena); */\nwebDriver.takeScreenshot().then(function (image, err) {\n  require(\"fs\").writeFile(\"ScreenshootTest1.png\", image, \"base64\", function (err) {\n    console.log(err);\n  });\n});\n/*   webDriver.quit(); */",
+              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"http://clickabuyapp.herokuapp.com/\");\n/*  await webDriver.sleep(3000); */\nconst searchInput = await webDriver.findElement(By.className(\"filtroHome\")).sendKeys(\"t\");\nawait webDriver.sleep(5000);\nconst searchInputButton = await webDriver\n  .findElement(By.css(\"#root > div.contenedorHome > header > div.contenedorSearch > div.contenedorFiltro > a\"))\n  .click();\n/* Codigo para preloaders, esto tiene 3 parametros el elemento, el tiempo maximo de espera y ... */\nwebDriver.wait(until.elementLocated(By.className(\"containerCards\")));\n/* Codigo para preloaders */\nconst texto = await webDriver.findElement(By.className(\"containerCards\")).getText();\nassert.notStrictEqual(texto, \"No products\");\n/* console.log(\"cadena\", cadena); */\nwebDriver.takeScreenshot().then(function (image, err) {\n  require(\"fs\").writeFile(\"ScreenshootTest1.png\", image, \"base64\", function (err) {\n    console.log(err);\n  });\n});\n/*   webDriver.quit(); */",
               "err": {},
-              "uuid": "a9d667d4-032f-4a48-95de-bbb52d264b2a",
-              "parentUUID": "6b00a11a-ac8d-48e9-b196-8975fb7b77b9",
+              "uuid": "1e2ed2c9-6276-437a-a72e-b68443bd56ac",
+              "parentUUID": "d58d021b-d4cb-4727-87bc-7768d3bdf689",
               "isHook": false,
               "skipped": false
             },
             {
-              "title": "Second Test: Navigate to a Store Page an set header filter with a *t* and setting stars filter in 5 ⭐ stars",
-              "fullTitle": "ClickaBuyWeb Selenium Test *FILTERS* Second Test: Navigate to a Store Page an set header filter with a *t* and setting stars filter in 5 ⭐ stars",
+              "title": "Second Test: Navigate into a store page and set filter at the top with a 't' character and then in the ratings stars filter, pick five ⭐ stars, and look for no coincidences with string (no product), if no product is found this test will be rejected",
+              "fullTitle": "ClickaBuyWeb Selenium Test *FILTERS* Second Test: Navigate into a store page and set filter at the top with a 't' character and then in the ratings stars filter, pick five ⭐ stars, and look for no coincidences with string (no product), if no product is found this test will be rejected",
               "timedOut": false,
-              "duration": 51796,
+              "duration": 51336,
               "state": "failed",
               "speed": null,
               "pass": false,
               "fail": true,
               "pending": false,
               "context": null,
-              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"https://clickabuyapp.herokuapp.com/\");\n/* Codigo para preloaders, esto tiene 3 parametros el elemento, el tiempo maximo de espera y ... */\nawait webDriver.sleep(10000);\n/* Navegacion1 */\nwebDriver.wait(until.elementLocated(By.id(\"dropdown-basic\")));\nconst botonCategry = await webDriver.findElement(By.id(\"dropdown-basic\")).click();\nthis.timeout(40000);\nconsole.log(\"transicion1\");\n/* Navegacion2 */\nwebDriver.wait(until.elementLocated(By.className(\"nameCategory\")));\nconst sportsBoton = await webDriver.findElement(By.className(\"nameCategory\")).click();\nawait webDriver.sleep(5000);\nconsole.log(\"transicion2\");\n/* Navegacion3 */\nwebDriver.wait(\n  until.elementLocated(\n    By.css(\n      \"#root > div.categoryContainer > div.categoryStoresContainer > div > a:nth-child(1) > div > span.nameStoresCards\"\n    )\n  )\n);\nconst sportsBoton2 = await webDriver\n  .findElement(\n    By.css(\n      \"#root > div.categoryContainer > div.categoryStoresContainer > div > a:nth-child(1) > div > span.nameStoresCards\"\n    )\n  )\n  .click();\nawait webDriver.sleep(5000);\n/* filtro1 geneal*/\nconst filtroStore = await webDriver.findElement(By.className(\"inputSearchStore\")).sendKeys(\"t\");\n/* filtro2 estrellas*/\nawait webDriver.sleep(5000);\nconst filtroStar = await webDriver.findElement(By.id(\"Z\")).click();\nawait webDriver.sleep(10000);\nwebDriver.takeScreenshot().then(function (image, err) {\n  require(\"fs\").writeFile(\"ScreenshootTest2.png\", image, \"base64\", function (err) {\n    console.log(err);\n  });\n});\nconst texto = await (\n  await webDriver.findElement(\n    By.css(\"#root > div.contenedorStore > div.buscador > div > div.containerCards > div > h2\")\n  )\n).getText();\nconsole.log(\"soy el text, del test 2\", texto);\nassert.notStrictEqual(texto, \"No products\");\naddContext(this, \"https://cdn.download.ams.birds.cornell.edu/api/v1/asset/113692681/1800\");\n/* console.log(\"cadena\", cadena); */\n/*    webDriver.quit()\n */",
+              "code": "let webDriver = new Builder().forBrowser(\"chrome\").build();\nwebDriver.manage().window().maximize();\nawait webDriver.get(\"https://clickabuyapp.herokuapp.com/\");\n/* Codigo para preloaders, esto tiene 3 parametros el elemento, el tiempo maximo de espera y ... */\nawait webDriver.sleep(10000);\n/* Navegacion1 */\nwebDriver.wait(until.elementLocated(By.id(\"dropdown-basic\")));\nconst botonCategry = await webDriver.findElement(By.id(\"dropdown-basic\")).click();\nthis.timeout(40000);\n/*  console.log(\"transicion1\"); */\n/* Navegacion2 */\nwebDriver.wait(until.elementLocated(By.className(\"nameCategory\")));\nconst sportsBoton = await webDriver.findElement(By.className(\"nameCategory\")).click();\nawait webDriver.sleep(5000);\n/*    console.log(\"transicion2\"); */\n/* Navegacion3 */\nwebDriver.wait(\n  until.elementLocated(\n    By.css(\n      \"#root > div.categoryContainer > div.categoryStoresContainer > div > a:nth-child(1) > div > span.nameStoresCards\"\n    )\n  )\n);\nconst sportsBoton2 = await webDriver\n  .findElement(\n    By.css(\n      \"#root > div.categoryContainer > div.categoryStoresContainer > div > a:nth-child(1) > div > span.nameStoresCards\"\n    )\n  )\n  .click();\nawait webDriver.sleep(5000);\n/* filtro1 geneal*/\nconst filtroStore = await webDriver.findElement(By.className(\"inputSearchStore\")).sendKeys(\"t\");\n/* filtro2 estrellas*/\nawait webDriver.sleep(5000);\nconst filtroStar = await webDriver.findElement(By.id(\"Z\")).click();\nawait webDriver.sleep(10000);\nwebDriver.takeScreenshot().then(function (image, err) {\n  require(\"fs\").writeFile(\"ScreenshootTest2.png\", image, \"base64\", function (err) {\n    /*  console.log(err); */\n  });\n});\nconst texto = await (\n  await webDriver.findElement(\n    By.css(\"#root > div.contenedorStore > div.buscador > div > div.containerCards > div > h2\")\n  )\n).getText();\n/*  console.log(\"soy el text, del test 2\", texto); */\nassert.notStrictEqual(texto, \"No products\");\n/* console.log(\"cadena\", cadena); */\n/*    webDriver.quit()\n */",
               "err": {
                 "message": "AssertionError: Expected \"actual\" to be strictly unequal to:\n\n'No products'",
-                "estack": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to:\n\n'No products'\n    at Context.<anonymous> (test.js:103:16)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)",
+                "estack": "AssertionError [ERR_ASSERTION]: Expected \"actual\" to be strictly unequal to:\n\n'No products'\n    at Context.<anonymous> (test.js:106:16)\n    at processTicksAndRejections (internal/process/task_queues.js:93:5)",
                 "diff": ""
               },
-              "uuid": "383a1e19-ddbb-4b04-b2a6-8585b19e08e0",
-              "parentUUID": "6b00a11a-ac8d-48e9-b196-8975fb7b77b9",
+              "uuid": "17fcd8b2-7f05-4340-a46b-179b4a380ade",
+              "parentUUID": "d58d021b-d4cb-4727-87bc-7768d3bdf689",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "a9d667d4-032f-4a48-95de-bbb52d264b2a"
+            "1e2ed2c9-6276-437a-a72e-b68443bd56ac"
           ],
           "failures": [
-            "383a1e19-ddbb-4b04-b2a6-8585b19e08e0"
+            "17fcd8b2-7f05-4340-a46b-179b4a380ade"
           ],
           "pending": [],
           "skipped": [],
-          "duration": 61782,
+          "duration": 67840,
           "root": false,
           "rootEmpty": false,
           "_timeout": 40000

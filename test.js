@@ -5,7 +5,6 @@ const fsp = require("fs").promises;
 const assert = require("assert");
 /* const {describe,it} = require('selenium-webdriver/testing') */
 
-const casos = [{ prod: "bag" }, { prod: "bag" }];
 const caps = new Capabilities();
 caps.setPageLoadStrategy("eager");
 
@@ -18,12 +17,15 @@ async function test() {
 function miTest() {
   describe("ClickaBuyWeb Selenium Test *FILTERS*", function () {
     this.timeout(80000);
-    /* 2 2 2 2 2 2  */
-    it("First Test: Filter located @ Home 🏠 in default search (empty stringtext) give as results something different than *No products*, wich means that the website is reaching the source data", async () => {
+
+    it("First Test: Filter located @ Home 🏠 in search input place a ('t character') give as results something different than *No products*, wich means that the website is reaching the data source", async () => {
       let webDriver = new Builder().forBrowser("chrome").build();
       webDriver.manage().window().maximize();
       await webDriver.get("http://clickabuyapp.herokuapp.com/");
       /*  await webDriver.sleep(3000); */
+
+      const searchInput = await webDriver.findElement(By.className("filtroHome")).sendKeys("t");
+      await webDriver.sleep(5000);
       const searchInputButton = await webDriver
         .findElement(By.css("#root > div.contenedorHome > header > div.contenedorSearch > div.contenedorFiltro > a"))
         .click();
@@ -42,7 +44,8 @@ function miTest() {
       });
       /*   webDriver.quit(); */
     }),
-      it("Second Test: Navigate into a Store page an set header filter with a *t* and then picking 5 ⭐ stars in the rating filter", async () => {
+      /*2 Test*/
+      it("Second Test: Navigate into a store page and set filter at the top with a 't' character and then in the ratings stars filter, pick five ⭐ stars, and look for no coincidences with string (no product), if no product is found this test will be rejected", async () => {
         let webDriver = new Builder().forBrowser("chrome").build();
         webDriver.manage().window().maximize();
         await webDriver.get("https://clickabuyapp.herokuapp.com/");
@@ -54,13 +57,13 @@ function miTest() {
         const botonCategry = await webDriver.findElement(By.id("dropdown-basic")).click();
 
         this.timeout(40000);
-        console.log("transicion1");
+        /*  console.log("transicion1"); */
         /* Navegacion2 */
 
         webDriver.wait(until.elementLocated(By.className("nameCategory")));
         const sportsBoton = await webDriver.findElement(By.className("nameCategory")).click();
         await webDriver.sleep(5000);
-        console.log("transicion2");
+        /*    console.log("transicion2"); */
 
         /* Navegacion3 */
         webDriver.wait(
@@ -79,8 +82,8 @@ function miTest() {
           .click();
 
         await webDriver.sleep(5000);
-        /* filtro1 geneal*/
 
+        /* filtro1 geneal*/
         const filtroStore = await webDriver.findElement(By.className("inputSearchStore")).sendKeys("t");
 
         /* filtro2 estrellas*/
@@ -89,7 +92,7 @@ function miTest() {
         await webDriver.sleep(10000);
         webDriver.takeScreenshot().then(function (image, err) {
           require("fs").writeFile("ScreenshootTest2.png", image, "base64", function (err) {
-            console.log(err);
+            /*  console.log(err); */
           });
         });
 
@@ -99,10 +102,8 @@ function miTest() {
           )
         ).getText();
 
-        console.log("soy el text, del test 2", texto);
+        /*  console.log("soy el text, del test 2", texto); */
         assert.notStrictEqual(texto, "No products");
-
-        addContext(this, "https://cdn.download.ams.birds.cornell.edu/api/v1/asset/113692681/1800");
 
         /* console.log("cadena", cadena); */
         /*    webDriver.quit()
